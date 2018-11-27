@@ -1,6 +1,11 @@
 require_relative 'boot'
 
-require 'rails/all'
+%w(
+  active_record/railtie
+  action_controller/railtie
+  action_view/railtie
+  sprockets/railtie
+).each(&method(:require))
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
