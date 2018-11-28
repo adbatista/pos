@@ -10,6 +10,9 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'neat'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bourbon'
+gem  'bitters'
+gem "font-awesome-rails"
 
 group :development, :test do
   gem 'pry-rails'

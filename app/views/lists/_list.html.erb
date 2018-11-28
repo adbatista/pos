@@ -1,0 +1,21 @@
+<div class="list">
+  <div class="list__title">
+    <%= list.name %>
+    <%= fa_icon "check", title: (list.done? ? "Done": ""), class: (list.done? ? "list--done": "list--not-done")  %>
+  </div>
+  <div class="list__content">
+    <ul class="list__items">
+      <%= render list.items %>
+    </ul>
+  </div>
+  <div class="list__actions">
+    <%= link_to fa_icon('eye'), list_path(list), title: "See List" unless action_name == 'show' %>
+    <%= link_to fa_icon('edit'), edit_list_path(list), title: "Edit" %>
+    <%= link_to fa_icon('trash'), list, method: :delete, title: "Destroy", data: { confirm: 'Are you sure?' } %>
+  </div>
+  <div class="list__new-item">
+    <%= link_to new_list_item_path(list) do %>
+    <%= fa_icon "plus" %> Add New Item
+    <% end %>
+  </div>
+</div>

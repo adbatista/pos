@@ -1,59 +1,32 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_list
 
-  # GET /items
-  def index
-    @items = Item.all
-  end
-
-  # GET /items/1
-  def show
-  end
-
-  # GET /items/new
   def new
-    @item = Item.new
+    @item = @list.items.new
   end
 
-  # GET /items/1/edit
-  def edit
-  end
-
-  # POST /items
   def create
-    @item = Item.new(item_params)
+    @item = @list.items.new(item_params)
 
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      redirect_to list_path(@list), notice: 'Item was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /items/1
-  def update
-    if @item.update(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /items/1
   def destroy
+    @item = @list.items.find(params[:id])
     @item.destroy
-      redirect_to items_url, notice: 'Item was successfully destroyed.'
-    end
+    redirect_back fallback_location: list_path(@list), notice: 'Item was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  def set_list
+    @list = List.find(params[:list_id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:name, :list_id)
-    end
+  def item_params
+    params.require(:item).permit(:name)
+  end
 end

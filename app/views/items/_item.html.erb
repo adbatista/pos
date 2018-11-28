@@ -1,0 +1,9 @@
+<li>
+  <%= item %>
+  <%= link_to fa_icon("close"), list_item_path(item.list, item), 
+  	method: :delete, 
+  	title: "Remove Item",
+  	class: "item__remove",
+  	data: { confirm: "Are you sure?" } 
+  %>
+</li>

@@ -1,0 +1,82 @@
+@import "neat";
+@import "bourbon";
+@import "base/base";
+@import "font-awesome";
+
+$white: #FFF;
+$black: #000;
+$lightgray: #EEE;
+$green: #0A0;
+$red: #C00;
+
+body {
+  background: $lightgray;
+}
+
+#notice {
+  border: 1px solid darken($green, 10%);
+  background: lighten($green, 10%);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.container {
+  @include grid-container;
+}
+
+.content, #notice {
+  @include grid-column(12);
+}
+
+.lists {
+  @include grid-column(8);
+}
+
+.list {
+  background: $white;
+  padding: 10px;
+  min-height: 80px;
+  border-radius: 10px;
+  border: 1px solid $black;
+  @include grid-column(12);
+  margin-bottom: 15px;  
+
+  &--done {
+    color: $green;
+    font-weight: bold;
+  }
+
+  &--not-done {
+    color: $lightgray;
+    font-weight: normal;
+  }
+
+  &__title {
+    @include grid-column(12);
+    font-weight: bolder;
+    font-size: 35px;
+    text-transform: uppercase;
+  }
+
+  &__content {
+    @include grid-column(10);
+  }
+
+  &__actions {
+    @include grid-column(2);
+  }
+
+  &__new-item {
+    @include grid-column(12);
+  }
+}
+
+.item__remove {
+  color: $red;
+}
+
+#error_explanation {
+  border: 1px solid $red;
+  padding: 10px;
+  background: lighten($red, 50%);
+}

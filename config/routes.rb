@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :items
-  resources :lists
+  root "lists#index"
+  resources :lists do
+  	resources :items, except: %i[index show, edit update]
+  end
 end
